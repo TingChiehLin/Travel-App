@@ -8,6 +8,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    devServer: {
+        port:3001
+    },
     entry: {
         main:'./src/client/index.js',
         about:'./src/client/js/about.js',
@@ -20,8 +23,9 @@ module.exports = {
     // },
     output: {
         filename: '[contenthash].js',
-        path: path.resolve(__dirname, './dist','scripts'),
-        publicPath: './dist/scripts/',
+        path: path.resolve(__dirname, 'dist')
+        // path: path.resolve(__dirname, './dist','scripts'),
+        // publicPath: './dist/scripts/',
     },
     devtool: 'cheap-module-eval-source-map',
     plugins: [
@@ -53,7 +57,7 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: '/\.scss$/',
+                test: '/\.s[ac]ss$/',
                 use: [ 'style-loader', 'css-loader', 'sass-loader']
             },
             {

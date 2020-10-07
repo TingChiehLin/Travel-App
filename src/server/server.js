@@ -1,13 +1,17 @@
 let path = require('path');
 const express = require('express');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 let bodtParser = require('body-parser');
 
 const dotenv = require('dotenv');
-const application_Key = process.env.API_KEY;
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodtParser.json());
+
+const cors = require('cors');
+app.use(cors());
 app.use(express.static('dist'));
 
 app.get('/',function (req,res) {
@@ -21,5 +25,11 @@ app.get('about',function (req,res) {
 app.post('/result',(req,res) => {
 
 })
+
+const port = 3002;
+const server = app.listen(port, () => {
+    console.log(`Server is running:${port}`);
+});
+
 
 

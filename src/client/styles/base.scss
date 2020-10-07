@@ -1,4 +1,4 @@
-@import './var.scss';
+@import "var";
 
 * {
     box-sizing: border-box;
@@ -7,3 +7,19 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/*
+    Header
+*/
+
+/*
+    Body
+*/
+
+/*
+    Footer
+*/
+
+.footer-container {
+    text-align: center;
+    background-color: rgb(75, 255, 255);
+}
