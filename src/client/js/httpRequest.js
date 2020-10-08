@@ -1,9 +1,9 @@
-const geonames_Key = process.env.geonames_KEY;
-const darkSky_Key = process.env.darkSky_KEY;
-const pixabay_Key = process.env.pixabay_KEY;
+const geonames_Key = 'tingchiehlin';
+const weatherBitForecast_KEY = 'e82087e4b7e64b26ac6bb45390a40a6f';
+const pixabay_Key = '17840487-4cc1b83539cb91665070e5edc';
 
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
-const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?lat=';
+const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabayAPIURL = "https://pixabay.com/api/?key=";
 
 //Get Location Request
@@ -29,8 +29,16 @@ const geoLocationRequest = (locationName) => {
     });
 }
 
+//https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
 //Get Forecast
-
+const ForecastRequest = (latitude, longitude) => {
+    const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
+    return fetch(url).then(
+        res => {
+            
+        }
+    )
+}
 
 //Get ImageURL
 
@@ -38,9 +46,6 @@ const geoLocationRequest = (locationName) => {
 //Get CountryInfo
 
 
-
-
-
 export {
-
+    geoLocationRequest
 }
