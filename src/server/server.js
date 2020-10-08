@@ -3,7 +3,11 @@ const express = require('express');
 // const fetch = require('node-fetch');
 let bodtParser = require('body-parser');
 
+//Data
+
+
 const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 

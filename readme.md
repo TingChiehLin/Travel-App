@@ -1,9 +1,6 @@
 # Project Introduction - Travel App
 
-
-
-
-
+This is final Front-End Developer Capstone Project. 
 
 ## Getting Started
 
@@ -38,5 +35,5 @@ npm run test
 ```
 
 
-##License
+## License
  This project is authorized MIT License
