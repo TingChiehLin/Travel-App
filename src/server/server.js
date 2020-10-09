@@ -1,7 +1,7 @@
 let path = require('path');
 const express = require('express');
 // const fetch = require('node-fetch');
-let bodtParser = require('body-parser');
+let bodyParser = require('body-parser');
 
 //Data
 
@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodtParser.json());
+app.use(bodyParser.json());
 
 const cors = require('cors');
 app.use(cors());

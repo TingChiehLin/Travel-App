@@ -5,6 +5,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -12,7 +13,7 @@ module.exports = {
         port:3001
     },
     entry: {
-        main:'./src/client/index.js',
+        home:'./src/client/index.js',
         about:'./src/client/js/about.js',
     },
     // devtool: 'source-map',
@@ -32,7 +33,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "src/client/views/index.html",
             filename: "index.html",
-            chunks: ['main']
+            chunks: ['home']
         }),
         new HtmlWebPackPlugin({
             template: "src/client/views/about.html",
@@ -47,7 +48,8 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        })
+        }),
+        new WorkboxPlugin.GenerateSW(),
     ],
     module: {
         rules: [

@@ -23,7 +23,7 @@ const geoLocationRequest = (locationName) => {
         } else {
             return res.json().then(errorData => {
                 console.log(errorData);
-                throw new Error('Server went wrong');
+                throw new Error('Invaild Information');
             });
         }
     });
@@ -31,11 +31,23 @@ const geoLocationRequest = (locationName) => {
 
 //https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
 //Get Forecast
-const ForecastRequest = (latitude, longitude) => {
+const ForecastRequest = (latitude, longitude, date) => {
+
+    //Date
+    const currentDate = new Date();
+    
+    weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
     const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
     return fetch(url).then(
         res => {
-            
+            if ((res.status >= 200 && res.status <= 300) || res.ok) {
+                
+            } else {
+                return res.json().then(errorData => {
+                    console.log(errorData);
+                    throw new Error("Invaid Information");
+                });
+            }
         }
     )
 }
@@ -43,9 +55,11 @@ const ForecastRequest = (latitude, longitude) => {
 //Get ImageURL
 
 
+
 //Get CountryInfo
 
 
-export {
-    geoLocationRequest
+export default{
+    geoLocationRequest,
+    ForecastRequest
 }
