@@ -59,6 +59,7 @@ const ForecastRequest = (latitude, longitude, date) => {
 //Get CountryInfo
 
 
+
 export default{
     geoLocationRequest,
     ForecastRequest

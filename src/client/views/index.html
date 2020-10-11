@@ -6,26 +6,75 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
         <title>Jay' Travel App</title>
     </head>
-    <header>
-        <nav class="header-container">
-            <div class="logo"></div>
-            <li class="nav-container">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-            </li>
-        </nav>
-    </header>
+    <div class="page-layout">
+        <header>
+            <nav class="header-container">
+                <div class="logo"></div>
+                <ul class="nav-container">
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                    <li class="highlight">See your trip</li>
+                </ul>
+            </nav>
+        </header>
+        <section class="trip-list-container">
+            <h1>Your Trip</h1>
+            <div id="trip-list" class="trip-list">
+                
+            </div>
+        </section>
+        <body class="page-container">
+           <!-- page-container-trip-form  -->
+           <div class="backdrop"></div>
+           <div class="modal" id="modal">
+               <div id="modal-title-container" class="modal-title-container">
+                <h2 id="country-location-title">England</h2>
+               </div>
+               <div class="country-intro-container">
+                    <div id="country-tourism-image" class="country-tourism-image">
+                        country-Image
+                    </div>
+                    <div id="country-intro" class="country-intro">
+                        <div id="country-image" class="country-image"></div>
+                        <h3 id="destination-title">England</h3>
+                        <p id="destination-context-date">07/09/2021</p>
+                        <p id="destination-context-duration">13days</p>
+                        <p id="destination-context-weather">55.56F</p>
+                        <p id="destination-context-weatherCondition">Cloudy</p>
+                    </div>
+                </div>
+                <button id="modal-action-container" class="modal-action-container">
+                    Confirm
+                </button>
+           </div>
 
-    <body class="page-container">
-       <form id="trip_form">
-            <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
-            <input type="text" id="date-day" name="day" placeholder="Type day" required/>
-            <input type="text" id="date-month" name="month" placeholder="Type month" required/>
-            <input type="text" id="date-year" name="year" placeholder="Type year" required/>
-            <button id="submit-button">Search</button>
-       </form>
-    </body>
+           <form class="page-container-trip-form">
+               <div class="form-group">
+                <h1 class="form-title">
+                    Where are you going to travel?
+                </h1>
+                <div class="input-container">
+                    <label for="place">Place:</label>
+                    <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
+                </div>
+                <div class="input-container">
+                    <label for="day">Day:</label>
+                    <input type="text" id="date-day" name="day" placeholder="Type day" required/>
+                </div >
+                <div class="input-container">
+                    <label for="month">Month:</label>
+                    <input type="text" id="date-month" name="month" placeholder="Type month" required/>
+                </div>
+                <div class="input-container"> 
+                    <label for="year">Year:</label>
+                    <input type="text" id="date-year" name="year" placeholder="Type year" required/>
+                </div>
+            </div>
+                <button id="submit-button">Search</button>
+           </form>
+        </body>
+    </div>
     <footer>
         <footer class="footer-container">
             <p>© 2020 Ting Chieh Lin LLC</p>

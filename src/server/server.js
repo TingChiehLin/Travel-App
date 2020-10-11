@@ -18,11 +18,11 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.static('dist'));
 
-app.get('/',function (req,res) {
+app.get('/',function (req, res) {
     res.sendFile(path.resolve('src/client/views/index.html'));
 })
 
-app.get('about',function (req,res) {
+app.get('/about',function (req, res) {
     res.sendFile(path.resolve('src/client/views/about.html'));
 })
 
