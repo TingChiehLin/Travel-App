@@ -4,29 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <link href="../img/favicon.ico" rel="shortcut icon" type='image/x-icon'/>
+        <link href="../favicon.ico" rel="icon" type="png" />
         <title>Jay' Travel App</title>
     </head>
     <div class="page-layout">
         <header>
             <nav class="header-container">
-                <div class="logo"></div>
+                <a class="logo" href="./"></a>
                 <ul class="nav-container">
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact</li>
-                    <li class="highlight">See your trip</li>
+                    <li id="trip-plan">Plan your Trip</li>
+                    <li id="trip-record">See your trip</li>
                 </ul>
             </nav>
         </header>
-        <section class="trip-list-container">
+        <div class="trip-list-container" id="trip-list-container">
             <h1>Your Trip</h1>
             <div id="trip-list" class="trip-list">
-                
+                Trip
             </div>
-        </section>
+        </div>
         <body class="page-container">
-           <!-- page-container-trip-form  -->
            <div class="backdrop"></div>
            <div class="modal" id="modal">
                <div id="modal-title-container" class="modal-title-container">
@@ -40,7 +37,7 @@
                         <div id="country-image" class="country-image"></div>
                         <h3 id="destination-title">England</h3>
                         <p id="destination-context-date">07/09/2021</p>
-                        <p id="destination-context-duration">13days</p>
+                        <p id="destination-context-duration">10</p>
                         <p id="destination-context-weather">55.56F</p>
                         <p id="destination-context-weatherCondition">Cloudy</p>
                     </div>
@@ -49,31 +46,32 @@
                     Confirm
                 </button>
            </div>
-
-           <form class="page-container-trip-form">
-               <div class="form-group">
-                <h1 class="form-title">
-                    Where are you going to travel?
-                </h1>
+           <section id="page-container-trip-form">
+            <form class="page-container-trip-form">
+                <div class="form-group">
+                 <h1 class="form-title">
+                     Where are you going to travel?
+                 </h1>
+                 <div class="input-container">
+                     <label for="place">Place:</label>
+                     <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
+                 </div>
+                 <div class="input-container"> 
+                    <label for="year">Year:</label>
+                    <input type="text" id="date-year" name="year" placeholder="Type a year that you will you arrive" required/>
+                </div>
                 <div class="input-container">
-                    <label for="place">Place:</label>
-                    <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
+                    <label for="month">Month:</label>
+                    <input type="text" id="date-month" name="month" placeholder="Type an month that you will you arrive" required/>
                 </div>
                 <div class="input-container">
                     <label for="day">Day:</label>
-                    <input type="text" id="date-day" name="day" placeholder="Type day" required/>
+                    <input type="text" id="date-day" name="day" placeholder="Type a day that you will you arrive" required/>
                 </div >
-                <div class="input-container">
-                    <label for="month">Month:</label>
-                    <input type="text" id="date-month" name="month" placeholder="Type month" required/>
-                </div>
-                <div class="input-container"> 
-                    <label for="year">Year:</label>
-                    <input type="text" id="date-year" name="year" placeholder="Type year" required/>
-                </div>
-            </div>
-                <button id="submit-button">Search</button>
-           </form>
+             </div>
+                 <button id="submit-button">Search</button>
+            </form>
+           </section>
         </body>
     </div>
     <footer>

@@ -6,6 +6,15 @@ const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabayAPIURL = "https://pixabay.com/api/?key=";
 
+//Calculate Date
+function calculateDay(dayID,monthID,yearID) {
+    const currentDate = new Date();
+    const testDate = new Date(`${dayID}+/+${monthID}+/+${yearID}`);
+    const difDate = Math.ceil((currentDate - testDate) / 1000 / 60 / 60 / 24);
+    console.log(difDate);   
+    return difDate;
+}
+  
 //Get Location Request
 const geoLocationRequest = (locationName) => {
     const url = geoNamesURL + locationName + '&maxRows=10' + '&username=' + geonames_Key;
@@ -31,13 +40,11 @@ const geoLocationRequest = (locationName) => {
 
 //https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
 //Get Forecast
-const ForecastRequest = (latitude, longitude, date) => {
+const ForecastRequest = (latitude, longitude) => {
 
-    //Date
-    const currentDate = new Date();
-    
-    weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
+    //weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
     const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
+
     return fetch(url).then(
         res => {
             if ((res.status >= 200 && res.status <= 300) || res.ok) {
@@ -59,8 +66,8 @@ const ForecastRequest = (latitude, longitude, date) => {
 //Get CountryInfo
 
 
-
 export default{
     geoLocationRequest,
-    ForecastRequest
+    ForecastRequest,
+    calculateDay
 }
