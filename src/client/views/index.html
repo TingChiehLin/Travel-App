@@ -17,6 +17,12 @@
                 </ul>
             </nav>
         </header>
+        <!-- <button id="test-button" class="modal-action-container">
+            test-button
+        </button>
+        <p id="test">Some text here</p>
+        <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
+         -->
         <div class="trip-list-container" id="trip-list-container">
             <h1>Your Trip</h1>
             <div id="trip-list" class="trip-list">
@@ -47,28 +53,29 @@
                 </button>
            </div>
            <section id="page-container-trip-form">
-            <form class="page-container-trip-form">
+            <form id="form" class="page-container-trip-form" action="/" method="GET">
                 <div class="form-group">
-                 <h1 class="form-title">
-                     Where are you going to travel?
-                 </h1>
-                 <div class="input-container">
-                     <label for="place">Place:</label>
-                     <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
-                 </div>
-                 <div class="input-container"> 
-                    <label for="year">Year:</label>
-                    <input type="text" id="date-year" name="year" placeholder="Type a year that you will you arrive" required/>
+                    <h1 class="form-title">
+                        Where are you going to travel?
+                    </h1>
+                    <div class="input-container">
+                        <label for="place">Place:</label>
+                        <input type="text" id="place" name="place" placeholder="Type a city name you want to go" required/>
+                    </div>
+                    <div class="input-container"> 
+                        <label for="year">Year:</label>
+                        <input type="text" id="date-year" name="year" placeholder="Type a year that you will you arrive" required/>
+                    </div>
+                    <div class="input-container">
+                        <label for="month">Month:</label>
+                        <input type="text" id="date-month" name="month" placeholder="Type an month that you will you arrive" required/>
+                    </div>
+                    <div class="input-container">
+                        <label for="day">Day:</label>
+                        <input type="text" id="date-day" name="day" placeholder="Type a day that you will you arrive" required/>
+                    </div >
+                    <p id="error" class="red"></p>
                 </div>
-                <div class="input-container">
-                    <label for="month">Month:</label>
-                    <input type="text" id="date-month" name="month" placeholder="Type an month that you will you arrive" required/>
-                </div>
-                <div class="input-container">
-                    <label for="day">Day:</label>
-                    <input type="text" id="date-day" name="day" placeholder="Type a day that you will you arrive" required/>
-                </div >
-             </div>
                  <button id="submit-button">Search</button>
             </form>
            </section>

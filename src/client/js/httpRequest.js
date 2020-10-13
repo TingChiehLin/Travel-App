@@ -4,7 +4,7 @@ const pixabay_Key = '17840487-4cc1b83539cb91665070e5edc';
 
 const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
-const pixabayAPIURL = "https://pixabay.com/api/?key=";
+const pixabay_APIURL = "https://pixabay.com/api/?key=";
 
 //Calculate Date
 function calculateDay(dayID,monthID,yearID) {
@@ -61,12 +61,35 @@ const ForecastRequest = (latitude, longitude) => {
 
 //Get ImageURL
 
+const imageRequest = (city, country) => {
 
+    const city_image = `&q=${city}&image_type=photo`;
+    const country_image = `&q=${country}&image_type=photo`;
+
+    const city_url = pixabay_APIURL + pixabay_Key + city_image;
+    const country_url = pixabay_APIURL + pixabay_Key + country_image;
+
+    return fetch(city_url).then(res => {
+        if ((res.status >= 200 && res.status <= 300) || res.ok) {
+
+        } else {
+            return res.json().then(errorData => {
+                console.log(errorData);
+                throw new Error("Invaid Information");
+            });
+        }
+    });
+
+}
 
 //Get CountryInfo
 
+const CountryRequest = (countryCode) => {
 
-export default{
+}
+
+
+export {
     geoLocationRequest,
     ForecastRequest,
     calculateDay
