@@ -19,7 +19,8 @@ app.use(cors());
 app.use(express.static('dist'));
 
 app.get('/',function (req, res) {
-    res.sendFile(path.resolve('src/client/views/index.html'));
+    //res.sendFile(path.resolve('src/client/views/index.html'));
+    res.send('./dist/index.html');
 })
 
 app.get('/about',function (req, res) {

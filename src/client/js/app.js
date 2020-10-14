@@ -20,7 +20,7 @@ const errorElement = document.getElementById('error');
 
 const testButton = document.getElementById('test-button');
 
-// let submitButton = document.getElementById('submit-button');
+let submitButton = document.getElementById('submit-button');
 
 //Questions
 //1. Modal can not Show Up
@@ -35,6 +35,7 @@ const test = () => {
 
 //Handle submit
 const handleSubmit = (e) => {
+    console.log("handleSubmit");
     let Message = [];
     if (placeID.value == '' || yearID.value == '' || monthID.value == '' || dayID.value == '') {
         Message.push("information is required");
@@ -50,7 +51,6 @@ const handleSubmit = (e) => {
         const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
         desDuration.innerHTML = dayDuration + 'days';
     }
-  
 }
 
 //close modal
@@ -72,8 +72,8 @@ const seeYourTrip = () => {
 }
 
 //testButton.addEventListener('click', test);
-form.addEventListener('submit', handleSubmit);
-// submitButton.addEventListener("click",handleSubmit);
+//form.addEventListener('submit', handleSubmit);
+submitButton.addEventListener("submit",handleSubmit);
 closeButton.addEventListener('click',closeModal);
 tripPlan.addEventListener('click',planYourTrip);
 tripRecord.addEventListener('click',seeYourTrip);

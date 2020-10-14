@@ -31,7 +31,8 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     plugins: [
         new HtmlWebPackPlugin({
-            template: "src/client/views/index.html",
+            favicon: "./src/client/favicon.ico",
+            template: "src/client/index.html",
             filename: "index.html",
             chunks: ['home']
         }),
