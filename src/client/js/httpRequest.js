@@ -98,5 +98,6 @@ const imageRequest = (city, country) => {
 export {
     geoLocationRequest,
     ForecastRequest,
-    imageRequest
+    imageRequest,
+    calculateDay
 }

@@ -1,4 +1,4 @@
-import {geoLocationRequest, ForecastRequest, imageRequest} from './httpRequest';
+import {geoLocationRequest, ForecastRequest, imageRequest,calculateDay} from './httpRequest';
 
 //Modal
 const backdrop = document.querySelector('.backdrop');
@@ -48,38 +48,35 @@ const test = () => {
 
 //Handle submit
 const handleSubmit = (e) => {
-    console.log("handleSubmit");
-    let Message = [];
+    e.preventDefault();
+    console.log("Show any information");
+    
     if (placeID.value == '' || yearID.value == '' || monthID.value == '' || dayID.value == '') {
-        Message.push("information is required");
+        errorElement.innerText = "Error Message"
     }
 
-    if (Message.length > 0) {
-        e.preventDedault();
-        errorElement.innerText = Message.join(', ');
-        backdrop.style.display = 'block';
-        modal.style.display = 'block';
-        //bug
-        const location = geoLocationRequest(placeID.value);
-        console.log(location);
+    backdrop.style.display = 'block';
+    modal.style.display = 'block';
+    //bug
+    const location = geoLocationRequest(placeID.value);
+    console.log(location);
 
-        // const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
-        const forecastdata = ForecastRequest(location.latitude,location.longitude);
-        const imageData = imageRequest(placeID);
+    const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
+    //const forecastdata = ForecastRequest(location.latitude,location.longitude);
+    const imageData = imageRequest(placeID);
 
-        data.day = dayDuration;
-        data.latitude = latitude;
-        data.longitude = longitude;
-        data.weatherforcast = forecastdata;
-        data.imageData = imageData;
-        updateUI(data);
-    }
+    data.day = dayDuration;
+   // data.latitude = latitude;
+    //data.longitude = longitude;
+    //data.weatherforcast = forecastdata;
+    //data.imageData = imageData;
+    updateUI(data);
 }
 
 const updateUI = (data) => {
     destinationTitle.innerHTML = placeID.value;
     desDuration.innerHTML = data.day + 'days';
-    countryImage.innerHTML = data.imageData;
+    //countryImage.innerHTML = data.imageData;
     //<p id="destination-context-date">07/09/2021</p>
 }
 
@@ -102,9 +99,8 @@ const seeYourTrip = () => {
 }
 
 //testButton.addEventListener('click', test);
-//form.addEventListener('submit', handleSubmit);
-submitButton.addEventListener("submit",handleSubmit);
+form.addEventListener('submit', handleSubmit);
+//submitButton.addEventListener("submit",handleSubmit);
 closeButton.addEventListener('click',closeModal);
-
 tripPlan.addEventListener('click',planYourTrip);
 tripRecord.addEventListener('click',seeYourTrip);
