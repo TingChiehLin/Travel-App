@@ -22,11 +22,11 @@ const geoLocationRequest = (locationName) => {
     ).then(res => {
         if((res.status >= 200 && res.status <= 300) || res.ok) {
             const locationData = {};
-            const jsonRes = res.json();
+            const locationjsonRes = res.json();
 
-            locationData.latitude = jsonRes.geonames[0].lat;
-            locationData.longitude = jsonRes.geonames[0].lng;
-            locationData.countryCode = jsonRes.geonames[0].countryCode;
+            locationData.latitude = locationjsonRes.geonames[0].lat;
+            locationData.longitude = locationjsonRes.geonames[0].lng;
+            locationData.countryCode = locationjsonRes.geonames[0].countryCode;
 
             return locationData;
         } else {
@@ -42,13 +42,18 @@ const geoLocationRequest = (locationName) => {
 //Get Forecast
 const ForecastRequest = (latitude, longitude) => {
 
-    //weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
+    //response = await fetch(weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
     const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
 
-    return fetch(url).then(
+    return fetch(url, {
+        method: 'POST',
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({url: url})
+    }).then(
         res => {
             if ((res.status >= 200 && res.status <= 300) || res.ok) {
-                
+                const weatherDataJSON = res.json();
+                return weatherDataJSON;
             } else {
                 return res.json().then(errorData => {
                     console.log(errorData);
@@ -71,7 +76,16 @@ const imageRequest = (city, country) => {
 
     return fetch(city_url).then(res => {
         if ((res.status >= 200 && res.status <= 300) || res.ok) {
-
+            const cityDataJson = res.json();
+            if (cityDataJson.totalHits === 0) {
+                return fetch(country_url).then(res => {
+                    if(res.ok) {
+                        const countryDataJSON = res.json();
+                        return countryDataJSON.hits[0].largeImageURL;
+                    }
+                })
+            }
+            return cityDataJson.hits[0].largeImageURL;
         } else {
             return res.json().then(errorData => {
                 console.log(errorData);
@@ -79,18 +93,10 @@ const imageRequest = (city, country) => {
             });
         }
     });
-
 }
-
-//Get CountryInfo
-
-const CountryRequest = (countryCode) => {
-
-}
-
 
 export {
     geoLocationRequest,
     ForecastRequest,
-    calculateDay
+    imageRequest
 }

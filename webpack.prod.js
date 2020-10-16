@@ -26,7 +26,7 @@ module.exports = {
         new WorkboxPlugin.GenerateSW(),
         new MiniCssExtractPlugin({ filename: "[name].css" }),
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
+            template: "src/client/index.html",
             filename: "./index.html",
         }),
         new CleanWebpackPlugin()
