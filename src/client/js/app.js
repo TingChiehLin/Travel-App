@@ -57,6 +57,7 @@ const handleSubmit = (e) => {
 
     backdrop.style.display = 'block';
     modal.style.display = 'block';
+    
     //bug
     const location = geoLocationRequest(placeID.value);
     console.log(location);
