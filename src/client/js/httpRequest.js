@@ -9,8 +9,9 @@ const pixabay_APIURL = "https://pixabay.com/api/?key=";
 //Calculate Date
 function calculateDay(dayID,monthID,yearID) {
     const currentDate = new Date();
-    const testDate = new Date(`${dayID}+/+${monthID}+/+${yearID}`);
-    const difDate = Math.ceil((currentDate - testDate) / 1000 / 60 / 60 / 24);
+    // const testDate = new Date(`${dayID}+/+${monthID}+/+${yearID}`);
+    const futureDate = new Date(yearID,monthID-1,dayID);
+    const difDate = Math.ceil((futureDate - currentDate) / 1000 / 60 / 60 / 24);
     console.log(difDate);   
     return difDate;
 }
@@ -69,29 +70,30 @@ const ForecastRequest = (latitude, longitude) => {
 const imageRequest = (city, country) => {
 
     const city_image = `&q=${city}&image_type=photo`;
-    const country_image = `&q=${country}&image_type=photo`;
+    const country_image = `&q=${country || 'Australia Flag'}&image_type=photo`;
 
     const city_url = pixabay_APIURL + pixabay_Key + city_image;
     const country_url = pixabay_APIURL + pixabay_Key + country_image;
 
-    return fetch(city_url).then(res => {
-        if ((res.status >= 200 && res.status <= 300) || res.ok) {
-            const cityDataJson = res.json();
-            if (cityDataJson.totalHits === 0) {
-                return fetch(country_url).then(res => {
-                    if(res.ok) {
-                        const countryDataJSON = res.json();
-                        return countryDataJSON.hits[0].largeImageURL;
+    return fetch(city_url)
+        .then(res => res.json())
+        .then(cityDataJson => {
+            if (cityDataJson.totalHits > 0) {
+                return fetch(country_url).then(res => res.json()).then(countryDataJSON => {
+                    if(countryDataJSON.totalHits > 0) {
+                        return {
+                            countryImage: countryDataJSON.hits[0].largeImageURL,
+                            cityImage: cityDataJson.hits[0].largeImageURL,
+                        };
                     }
                 })
             }
-            return cityDataJson.hits[0].largeImageURL;
-        } else {
-            return res.json().then(errorData => {
-                console.log(errorData);
-                throw new Error("Invaid Information");
-            });
-        }
+        }, error => {
+        console.log("Error: ", error);
+        throw new Error("Invaid Information");
+    }).catch(error => {
+        console.log("Error: ", error);
+        throw new Error("Invaid Information");
     });
 }
 

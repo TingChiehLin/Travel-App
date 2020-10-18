@@ -24,6 +24,9 @@ const destinationContextDate = document.getElementById('destination-context-date
 const destinationContextWeather = document.getElementById('destination-context-weather');
 const destinationContextWeatherCondition = document.getElementById('destination-context-weatherCondition');
 
+//city
+const cityImage = document.getElementById('city-tourism-image');
+
 //Form
 const form = document.getElementById('form');
 const errorElement = document.getElementById('error');
@@ -34,11 +37,6 @@ const testButton = document.getElementById('test-button');
 
 //Data
 const data = {};
-
-//Questions
-//1. Modal can not Show Up
-//2. From problem
-//3. desDuration can not show
 
 //Test
 const test = () => {
@@ -57,28 +55,25 @@ const handleSubmit = (e) => {
 
     backdrop.style.display = 'block';
     modal.style.display = 'block';
-    
-    //bug
-    const location = geoLocationRequest(placeID.value);
-    console.log(location);
 
+    const location = geoLocationRequest(placeID.value);
     const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
     //const forecastdata = ForecastRequest(location.latitude,location.longitude);
-    const imageData = imageRequest(placeID);
+    const imageData = imageRequest(placeID.value);
 
     data.day = dayDuration;
-   // data.latitude = latitude;
+    //data.latitude = latitude;
     //data.longitude = longitude;
     //data.weatherforcast = forecastdata;
-    //data.imageData = imageData;
+    data.imageData = imageData;
     updateUI(data);
 }
 
 const updateUI = (data) => {
     destinationTitle.innerHTML = placeID.value;
-    desDuration.innerHTML = data.day + 'days';
-    //countryImage.innerHTML = data.imageData;
-    //<p id="destination-context-date">07/09/2021</p>
+    destinationContextDate.innerHTML = "Arrive date: " + `${dayID.value} / ${monthID.value} / ${yearID.value}`;
+    desDuration.innerHTML = "Days to leave: " + data.day + ' days Left';
+    cityImage.innerHTML = data.imageData.city_image;;
 }
 
 //close modal
@@ -99,8 +94,8 @@ const seeYourTrip = () => {
     tripListContainer.style.display = 'block';
 }
 
-//testButton.addEventListener('click', test);
 form.addEventListener('submit', handleSubmit);
+//testButton.addEventListener('click', test);
 //submitButton.addEventListener("submit",handleSubmit);
 closeButton.addEventListener('click',closeModal);
 tripPlan.addEventListener('click',planYourTrip);

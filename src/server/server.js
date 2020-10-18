@@ -29,6 +29,8 @@ app.get('/about',function (req, res) {
 
 app.post('/result',(req,res) => {
     
+
+    
 })
 
 const port = 3002;

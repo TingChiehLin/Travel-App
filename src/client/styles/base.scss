@@ -93,14 +93,13 @@
         }
 
         .form-group {
-            width: 500px;
+            width: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 2.5rem;
             margin-bottom: 3rem;
-
             .input-container{
                 width: 400px;
                 display: flex;
@@ -125,8 +124,15 @@
             }
         }
     
-        button {
+        .submit-button {
             padding: 0.7rem 3rem;
+            border-radius: 1.5rem;
+            border: 0;
+            background-color: $primary;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            font: inherit;
         }
     }
 }
