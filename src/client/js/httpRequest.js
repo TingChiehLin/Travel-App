@@ -19,23 +19,24 @@ function calculateDay(dayID,monthID,yearID) {
 //Get Location Request
 const geoLocationRequest = (locationName) => {
     const url = geoNamesURL + locationName + '&maxRows=10' + '&username=' + geonames_Key;
-    return fetch(url
-    ).then(res => {
-        if((res.status >= 200 && res.status <= 300) || res.ok) {
-            const locationData = {};
-            const locationjsonRes = res.json();
+    return fetch(url)
+        .then(res => res.json())
+        .then(res => {
+            if((res.status >= 200 && res.status <= 300) || res.ok) {
+                const locationData = {};
+                const locationjsonRes = res.json();
 
-            locationData.latitude = locationjsonRes.geonames[0].lat;
-            locationData.longitude = locationjsonRes.geonames[0].lng;
-            locationData.countryCode = locationjsonRes.geonames[0].countryCode;
-
-            return locationData;
-        } else {
-            return res.json().then(errorData => {
-                console.log(errorData);
-                throw new Error('Invaild Information');
-            });
-        }
+                locationData.latitude = locationjsonRes.geonames[0].lat;
+                locationData.longitude = locationjsonRes.geonames[0].lng;
+                locationData.countryCode = locationjsonRes.geonames[0].countryCode;
+                return locationData;
+            }
+            }, error => {
+                console.log(error);
+                throw new Error('Error Information');
+        }).catch(error => {
+            console.log("Error: ", error);
+            throw new Error("Invaid Information");
     });
 }
 
@@ -89,12 +90,12 @@ const imageRequest = (city, country) => {
                 })
             }
         }, error => {
-        console.log("Error: ", error);
-        throw new Error("Invaid Information");
-    }).catch(error => {
-        console.log("Error: ", error);
-        throw new Error("Invaid Information");
-    });
+            console.log("Error: ", error);
+            throw new Error("Invaid Information");
+        }).catch(error => {
+            console.log("Error: ", error);
+            throw new Error("Invaid Information");
+        });
 }
 
 export {

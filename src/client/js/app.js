@@ -47,8 +47,7 @@ const test = () => {
 //Handle submit
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Show any information");
-    
+
     if (placeID.value == '' || yearID.value == '' || monthID.value == '' || dayID.value == '') {
         errorElement.innerText = "Error Message"
     }
@@ -58,13 +57,13 @@ const handleSubmit = (e) => {
 
     const location = geoLocationRequest(placeID.value);
     const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
-    //const forecastdata = ForecastRequest(location.latitude,location.longitude);
+    const forecastdata = ForecastRequest(location.latitude,location.longitude);
     const imageData = imageRequest(placeID.value);
 
     data.day = dayDuration;
-    //data.latitude = latitude;
-    //data.longitude = longitude;
-    //data.weatherforcast = forecastdata;
+    data.latitude = location.latitude;
+    data.longitude = location.latitude;
+    data.weatherforcast = forecastdata;
     data.imageData = imageData;
     updateUI(data);
 }
