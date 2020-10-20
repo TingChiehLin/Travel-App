@@ -25,7 +25,6 @@ const geoLocationRequest = (locationName) => {
             if((res.status >= 200 && res.status <= 300) || res.ok) {
                 const locationData = {};
                 const locationjsonRes = res.json();
-
                 locationData.latitude = locationjsonRes.geonames[0].lat;
                 locationData.longitude = locationjsonRes.geonames[0].lng;
                 locationData.countryCode = locationjsonRes.geonames[0].countryCode;
@@ -47,23 +46,25 @@ const ForecastRequest = (latitude, longitude) => {
     //response = await fetch(weatherbithistoryURL + toLat + '&lon=' + toLng + '&start_date=' + date + '&end_date=' + next_date + '&key=' + weatherbitkey)
     const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
 
-    return fetch(url, {
-        method: 'POST',
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({url: url})
-    }).then(
-        res => {
-            if ((res.status >= 200 && res.status <= 300) || res.ok) {
-                const weatherDataJSON = res.json();
-                return weatherDataJSON;
-            } else {
-                return res.json().then(errorData => {
-                    console.log(errorData);
-                    throw new Error("Invaid Information");
-                });
-            }
+    // , {
+    //     method: 'POST',
+    //     headers: {"Content-Type":"application/json"},
+    //     body: JSON.stringify({url: url})
+    // })
+
+    return fetch(url)
+    .then(res => res.json())
+    .then(res => {
+        if((res.status >= 200 && res.status <= 300) || res.ok) {
+            return res;
         }
-    )
+        }, error => {
+            console.log(error);
+            throw new Error("Fetch Error");
+    }).catch(error => {
+        console.log(error);
+        throw new Error("Fetch Error Information");
+    });
 }
 
 //Get ImageURL
