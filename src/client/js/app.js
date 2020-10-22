@@ -25,27 +25,19 @@ const destinationContextWeather = document.getElementById('destination-context-w
 const destinationContextWeatherCondition = document.getElementById('destination-context-weatherCondition');
 
 //city
-const cityImage = document.getElementById('city-tourism-image');
+const cityImageDiv = document.getElementById('city-tourism-image');
 
 //Form
 const form = document.getElementById('form');
 const errorElement = document.getElementById('error');
-let submitButton = document.getElementById('submit-button');
+// let submitButton = document.getElementById('submit-button');
 let closeButton = document.getElementById('modal-action-container');
-
-const testButton = document.getElementById('test-button');
 
 //Data
 const data = {};
 
-//Test
-const test = () => {
-    console.log("test");
-    console.log(placeID.value);
-}
-
 //Handle submit
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (placeID.value == '' || yearID.value == '' || monthID.value == '' || dayID.value == '') {
@@ -55,24 +47,27 @@ const handleSubmit = (e) => {
     backdrop.style.display = 'block';
     modal.style.display = 'block';
 
-    const location = geoLocationRequest(placeID.value);
+    const location = await geoLocationRequest(placeID.value);
     const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
-    const forecastdata = ForecastRequest(location.latitude,location.longitude);
-    const imageData = imageRequest(placeID.value);
-
+    const forecastdata = await ForecastRequest(location.latitude,location.longitude);
+    const imageData = await imageRequest(placeID.value);
     data.day = dayDuration;
     data.latitude = location.latitude;
     data.longitude = location.latitude;
-    data.weatherforcast = forecastdata;
-    data.imageData = imageData;
+    data.temperature = forecastdata.temperature;
+    data.condition = forecastdata.condition;
+    data.cityImage = imageData.cityImage;
+    data.countryImage = imageData.countryImage;
     updateUI(data);
 }
 
 const updateUI = (data) => {
     destinationTitle.innerHTML = placeID.value;
     destinationContextDate.innerHTML = "Arrive date: " + `${dayID.value} / ${monthID.value} / ${yearID.value}`;
-    desDuration.innerHTML = "Days to leave: " + data.day + ' days Left';
-    cityImage.innerHTML = data.imageData.city_image;;
+    desDuration.innerHTML = data.day < 0 ? "Please Type valid Inforamation" : "Days to leave: " + data.day + ' days Left'; 
+    destinationContextWeather.innerHTML = data.temperature;
+    destinationContextWeatherCondition.innerHTML = data.condition;
+    cityImageDiv.style.background = `url(${data.cityImage})`;
 }
 
 //close modal
@@ -94,8 +89,7 @@ const seeYourTrip = () => {
 }
 
 form.addEventListener('submit', handleSubmit);
-//testButton.addEventListener('click', test);
-//submitButton.addEventListener("submit",handleSubmit);
+//submitButton.addEventListener("click",handleSubmit);
 closeButton.addEventListener('click',closeModal);
 tripPlan.addEventListener('click',planYourTrip);
 tripRecord.addEventListener('click',seeYourTrip);

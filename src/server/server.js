@@ -4,8 +4,7 @@ const express = require('express');
 let bodyParser = require('body-parser');
 
 //Data
-
-
+let Data = {};
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -28,9 +27,12 @@ app.get('/about',function (req, res) {
 })
 
 app.post('/result',(req,res) => {
-    
-
-    
+    Data.temperature = req.body.temperature;
+    Data.condition = req.body.condition;
+    Data.duration = req.body.desDuration;
+    Data.cityImage  = req.body.cityImage;
+    Data.date = req.body.date;
+    res.send(Data);
 })
 
 const port = 3002;
