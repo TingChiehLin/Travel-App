@@ -1,3 +1,4 @@
+import { forEach } from 'lodash';
 import {geoLocationRequest, ForecastRequest, imageRequest,calculateDay} from './httpRequest';
 
 //Modal
@@ -9,7 +10,11 @@ const tripRecord = document.getElementById('trip-record');
 const tripPlanList = document.getElementById('page-container-trip-form');
 
 //Trip
-const tripList = document.getElementById('trip-list');
+const tripListPlan = document.getElementById('trip-list-plan');
+const tripNumber = document.getElementById('trip-number');
+const tripTitle = document.getElementById('trip-title');
+const tripDayLeft = document.getElementById('trip-daylet');
+const tripTime = document.getElementById('trip-time');
 
 //Input Field
 const placeID = document.getElementById('place');
@@ -35,6 +40,9 @@ let closeButton = document.getElementById('modal-action-container');
 
 //Data
 const data = {};
+let number = 0;
+//Trip-List Data
+const tripListData = [];
 
 //Handle submit
 const handleSubmit = async (e) => {
@@ -51,7 +59,13 @@ const handleSubmit = async (e) => {
     const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
     const forecastdata = await ForecastRequest(location.latitude,location.longitude);
     const imageData = await imageRequest(placeID.value);
+    number++;
+    data.number = number;
+    data.title = placeID.value;
     data.day = dayDuration;
+    data.years = yearID.value;
+    data.months = monthID.value;
+    data.days = dayID.value;
     data.latitude = location.latitude;
     data.longitude = location.latitude;
     data.temperature = forecastdata.temperature;
@@ -59,15 +73,36 @@ const handleSubmit = async (e) => {
     data.cityImage = imageData.cityImage;
     data.countryImage = imageData.countryImage;
     updateUI(data);
+    updateList(data);
 }
 
 const updateUI = (data) => {
     destinationTitle.innerHTML = placeID.value;
-    destinationContextDate.innerHTML = "Arrive date: " + `${dayID.value} / ${monthID.value} / ${yearID.value}`;
+    destinationContextDate.innerHTML = "Arrive date: " + `${dayID.value}/${monthID.value}/${yearID.value}`;
     desDuration.innerHTML = data.day < 0 ? "Please Type valid Inforamation" : "Days to leave: " + data.day + ' days Left'; 
     destinationContextWeather.innerHTML = data.temperature;
     destinationContextWeatherCondition.innerHTML = data.condition;
     cityImageDiv.style.background = `url(${data.cityImage})`;
+}
+
+const updateList = (data) => {
+    tripListData.push(data);
+    //Update UI
+    const newDiv = document.createElement('div');
+    const tripNumber = document.createElement('p');
+    tripNumber.innerHTML = data.number;
+    const tripTitle = document.createElement('p');
+    tripTitle.innerHTML = data.title;
+    const tripDayLeft = document.createElement('p');
+    tripDayLeft.innerHTML = data.day;
+    const tripTime = document.createElement('p');
+    tripTime.innerHTML = `${data.days} / ${data.months} / ${data.years}`;
+    newDiv.classList = 'trip-list-items';
+    newDiv.appendChild(tripNumber);
+    newDiv.appendChild(tripTitle);
+    newDiv.appendChild(tripDayLeft);
+    newDiv.appendChild(tripTime);
+    tripListPlan.appendChild(newDiv);
 }
 
 //close modal

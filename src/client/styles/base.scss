@@ -50,17 +50,32 @@
 .trip-list-container {
     display: none;
     margin: 3.5rem auto;
-    background-color: aqua;
-    width: 50rem;
-    height: 300px;
+    background-color: rgb(235, 235, 235);
+    width: 60rem;
+    height: 100%;
 
     h1 {
         text-align: center;
     }
 
     .trip-list {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-weight: 500;
     }
+
+    .trip-list-items {
+        height: 100px;
+        width: 60rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-weight: 300;
+        
+    }
+
 }
 
 /*

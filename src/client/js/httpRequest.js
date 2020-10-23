@@ -80,29 +80,6 @@ const imageRequest = async (city, country) => {
     });
 }
 
-/*
-//  The other way to fetch data
-    return fetch(city_url)
-        .then(res => res.json())
-        .then(cityDataJson => {
-            if (cityDataJson.totalHits > 0) {
-                return fetch(country_url).then(res => res.json()).then(countryDataJSON => {
-                    if(countryDataJSON.totalHits > 0) {
-                        return {
-                            countryImage: countryDataJSON.hits[0].largeImageURL,
-                            cityImage: cityDataJson.hits[0].largeImageURL,
-                        };
-                    }
-                })
-            }
-        }, error => {
-            console.log("Error: ", error);
-            throw new Error("Invaid Information");
-        }).catch(error => {
-            console.log("Error: ", error);
-            throw new Error("Invaid Information");
-        });
-*/
 export {
     geoLocationRequest,
     ForecastRequest,

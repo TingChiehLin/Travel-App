@@ -33,22 +33,65 @@
         width: 100%;
         height: 75%;
         margin: 2rem 0 1rem 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 3rem;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        // gap: 3rem;
 
         .city-tourism-image {
-            width: 40%;
+            width: 100%;
             height: 100%;
             background-position: center;
             background-size: contain;
-        }
-        
-        .country-intro {
-            width: 60%;
-            height: 100%;
+            background-color: lawngreen;
             position: relative;
+            font:inherit;
+            border-radius: 1.5rem;
+            z-index: 0;
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 1.5rem;
+                z-index: 10;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .country-intro {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 20;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 1.5rem 1.5rem;
+            .destination-context-date {
+                font: inherit;
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+                font-weight: 100;
+            }
+            .destination-context-duration {
+                font: inherit;
+                font-size: 1.2rem;
+                font-weight: 100;
+            }
+            .destination-context-weather {
+                font: inherit;
+                font-size: 5rem;
+                font-weight: 500;
+            }
+            .destination-context-weatherCondition {
+                font: inherit;
+                font-size: 1.5rem;
+                font-weight: 300;
+                margin-bottom: 0.5rem;
+            }
         }
     }
     .modal-action-container {
@@ -86,5 +129,5 @@
     text-transform: uppercase;
 }
 
-  
+
 

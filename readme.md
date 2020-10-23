@@ -1,6 +1,6 @@
 # Project Introduction - Travel App
 
-This is final Front-End Developer Capstone Project. 
+This is final Front-End Developer Capstone Project. A pretty and 
 
 ## Getting Started
 
@@ -34,6 +34,9 @@ Step 6. Testing
 npm run test
 ```
 
+## Feature
+
+You are able to check your record on the "See your Trip" Navigation Bar
 
 ## License
  This project is authorized MIT License
