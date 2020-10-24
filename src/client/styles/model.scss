@@ -3,7 +3,7 @@
 .modal {
     // width: 800px;
     // height: 500px;
-    display: none;
+    // display: none;
     background-color: rgb(241, 253, 255);
     border-radius: 1.5rem;
     position: fixed;
@@ -112,13 +112,10 @@
 
 .backdrop {
     position: fixed;
-    display: none;
+    // display: none;
     top: 0;
     left: 0;
     z-index: 100;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
 }
 
 /*
@@ -129,5 +126,6 @@
     text-transform: uppercase;
 }
 
+@media (max-width:40rem) {
 
-
+}

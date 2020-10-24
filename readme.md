@@ -36,7 +36,12 @@ npm run test
 
 ## Feature
 
-You are able to check your record on the "See your Trip" Navigation Bar
+- You are able to check your record on the "See your Trip" Navigation Bar
+- Enjoy Beautiful Website with responsive design 
+
+## Link 
+
+[Travel App]()
 
 ## License
  This project is authorized MIT License

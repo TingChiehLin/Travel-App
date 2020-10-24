@@ -50,10 +50,8 @@
 .trip-list-container {
     display: none;
     margin: 3.5rem auto;
-    background-color: rgb(235, 235, 235);
     width: 60rem;
-    height: 100%;
-
+    background-color: rgb(235, 235, 235);
     h1 {
         text-align: center;
     }
@@ -64,6 +62,7 @@
         justify-content: space-around;
         align-items: center;
         font-weight: 500;
+        background-color: rgb(235, 235, 235);
     }
 
     .trip-list-items {
@@ -72,10 +71,10 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
         font-weight: 300;
-        
+        background-color: rgb(235, 235, 235);
     }
-
 }
 
 /*
@@ -194,73 +193,65 @@
         }
     }
 
+    .page-container {
+        // background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), url(../img/home_bg.jpg);
+        // width: 100vw;
+        // height: 100vh;
 
-.page-container {
-    // background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), url(../img/home_bg.jpg);
-    // width: 100vw;
-    // height: 100vh;
-
-    .page-container-trip-form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        
-        .form-title {
-            text-align: center;
-            color: $white;
-            margin-bottom: 3rem;
-        }
-
-        .form-group {
-            width: 600px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-            .input-container{
-                width: 400px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            label {
+        .page-container-trip-form {
+            // gap: 1rem;
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%,-50%);
+            
+            .form-title {
+                text-align: center;
                 color: $white;
-                text-align: left;
+                margin-bottom: 3rem;
             }
 
-            input {
-                //padding: 0.7rem 10rem;
-                width: 300px;
-                height: 35px;
-                border-radius: 1.5rem;
-                border: 0;
-                outline: none;
-                text-align: left;
-                padding-left: 1rem;
+            .form-group {
+                .input-container{
+                    font-size: 0.7rem;
+                    width: 300px;
+                }
+
+                input {
+                    width: 220px;
+                    height: 35px;
+                    border-radius: 1.5rem;
+                    border: 0;
+                    outline: none;
+                    text-align: left;
+                    padding-left: 1rem;
+                    font-size: 0.7rem;
+                }
             }
-        }
-    
-        .submit-button {
-            padding: 0.7rem 3rem;
-            border-radius: 1.5rem;
-            border: 0;
-            background-color: $primary;
-            color: white;
-            outline: none;
-            cursor: pointer;
-            font: inherit;
+        
+            .submit-button {
+                font-size: 0.7rem;
+            }
         }
     }
-}
+
+    .trip-list-container {
+        width: 25rem;
+        height: 100%;
+
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        .trip-list {
+            font-size: 0.7rem;
+        }
+
+        .trip-list-items {
+            width: 25rem;
+            font-size: 0.7rem;
+        }
+    }
 
     .footer-container {
        p {
