@@ -3,7 +3,7 @@
 .modal {
     // width: 800px;
     // height: 500px;
-    // display: none;
+    display: none;
     background-color: rgb(241, 253, 255);
     border-radius: 1.5rem;
     position: fixed;
@@ -26,6 +26,9 @@
         // gap: 2rem;
         // padding-right: 5%;
         font: inherit;
+        .destination-title {
+            text-transform: uppercase;
+        }
     }
 
     .country-intro-container {
@@ -64,12 +67,13 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            z-index: 20;
+            z-index: 10;
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             padding: 1.5rem 1.5rem;
+
             .destination-context-date {
                 font: inherit;
                 font-size: 1.2rem;
@@ -106,7 +110,6 @@
         cursor: pointer;
         margin: 0 auto;
         display: block;
-
     }
 }
 
@@ -118,14 +121,33 @@
     z-index: 100;
 }
 
-/*
-    Update UI
-*/
-
-.destination-title {
-    text-transform: uppercase;
-}
-
 @media (max-width:40rem) {
 
+    .modal-title-container {
+        .destination-title {
+            font-size: 1.5rem;
+        }
+    }
+    .modal {
+        width: 80%;
+        height: 70%;
+        .country-intro-container {
+            .country-intro {
+                .destination-context-date {
+                    font-size: 0.7rem;
+                }
+                .destination-context-duration {
+                    font-size: 0.7rem;
+                }
+                .destination-context-weather {
+                    font-size: 3rem;
+                    position: absolute;
+                    top: 5%;
+                }
+                .destination-context-weatherCondition {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
 }
