@@ -1,6 +1,5 @@
 let path = require('path');
 const express = require('express');
-// const fetch = require('node-fetch');
 let bodyParser = require('body-parser');
 
 //Data
@@ -40,5 +39,5 @@ const server = app.listen(port, () => {
     console.log(`Server is running:${port}`);
 });
 
-
+module.exports = app;
 

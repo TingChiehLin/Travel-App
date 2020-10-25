@@ -18,8 +18,9 @@ module.exports = {
     // },
     output: {
         filename: '[contenthash].js',
-        path: path.resolve(__dirname, './dist','scripts'),
-        publicPath: './dist/scripts/',
+        // path: path.resolve(__dirname, './dist','scripts'),
+        // publicPath: './dist/scripts/',
+        path: path.resolve(__dirname,'dist'),
     },
     devtool: 'cheap-source-map',
     plugins: [
