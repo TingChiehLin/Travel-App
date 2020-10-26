@@ -6,6 +6,9 @@ const geoNamesURL = 'http://api.geonames.org/searchJSON?q=';
 const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabay_APIURL = "https://pixabay.com/api/?key=";
 
+//Error Message
+const errorMessageDiv = document.getElementById('error');
+
 //Calculate Date
 function calculate_Day(dayID,monthID,yearID) {
     const currentDate = new Date();
@@ -17,6 +20,7 @@ function calculate_Day(dayID,monthID,yearID) {
 //Get Location Request
 const geoLocation_Request = async (locationName) => {
     const url = geoNamesURL + locationName + '&maxRows=10' + '&username=' + geonames_Key;
+    console.log(url);
     try {
         const res = await fetch(url);
         const locationjsonRes = await res.json();
@@ -26,7 +30,7 @@ const geoLocation_Request = async (locationName) => {
         locationData.countryCode = locationjsonRes.geonames[0].countryCode;
         return locationData;
     } catch (error) {
-        console.log(err);
+        errorMessageDiv.innerHTML = "Incomplete Message"
         throw new Error('Fetch Error');
     }
 } 
@@ -43,7 +47,7 @@ const Forecast_Request = async (latitude, longitude) => {
         weatherData.condition = weatherJSONData.data[0].weather.description;
         return weatherData;
     } catch (error) {
-        console.log(error);
+        errorMessageDiv.innerHTML = "Incomplete Message"
         throw new Error('Fetch Data Error');
     }
 }
@@ -72,17 +76,17 @@ const image_Request = async (city, country) => {
             })
         }
     }, error => {
-        console.log("Error: ", error);
+        errorMessageDiv.innerHTML = "Incomplete Message"
         throw new Error("Invaid Information");
     }).catch(error => {
-        console.log("Error: ", error);
+        errorMessageDiv.innerHTML = "Incomplete Message"
         throw new Error("Invaid Information");
     });
 }
 
 export {
     geoLocation_Request,
-    Forecast_Request,
+    Forecast_Request,  
     image_Request,
     calculate_Day
 }

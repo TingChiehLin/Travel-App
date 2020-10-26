@@ -1,5 +1,5 @@
 import { forEach } from 'lodash';
-import {geoLocationRequest, ForecastRequest, imageRequest,calculateDay} from './httpRequest';
+import {geoLocation_Request, Forecast_Request, image_Request,calculate_Day} from './httpRequest';
 
 //Modal
 const backdrop = document.querySelector('.backdrop');

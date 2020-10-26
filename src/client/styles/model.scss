@@ -110,6 +110,10 @@
         cursor: pointer;
         margin: 0 auto;
         display: block;
+
+        &:hover {
+            background-color: $secondary;
+        }
     }
 }
 

@@ -151,6 +151,9 @@
             outline: none;
             cursor: pointer;
             font: inherit;
+            &:hover {
+                background-color: $secondary;
+            }
         }
     }
 }
@@ -226,7 +229,9 @@
         
             .submit-button {
                 font-size: 0.7rem;
+                transition-duration: 0.4s;
             }
+
         }
     }
 
