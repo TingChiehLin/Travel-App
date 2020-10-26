@@ -55,10 +55,10 @@ const handleSubmit = async (e) => {
     backdrop.style.display = 'block';
     modal.style.display = 'block';
 
-    const location = await geoLocationRequest(placeID.value);
-    const dayDuration = calculateDay(dayID.value,monthID.value,yearID.value);
-    const forecastdata = await ForecastRequest(location.latitude,location.longitude);
-    const imageData = await imageRequest(placeID.value);
+    const location = await geoLocation_Request(placeID.value);
+    const dayDuration = calculate_Day(dayID.value,monthID.value,yearID.value);
+    const forecastdata = await Forecast_Request(location.latitude,location.longitude);
+    const imageData = await image_Request(placeID.value);
     number++;
     data.number = number;
     data.title = placeID.value;
@@ -128,3 +128,7 @@ form.addEventListener('submit', handleSubmit);
 closeButton.addEventListener('click',closeModal);
 tripPlan.addEventListener('click',planYourTrip);
 tripRecord.addEventListener('click',seeYourTrip);
+
+export {
+    handleSubmit
+}

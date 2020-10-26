@@ -10,16 +10,8 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: './src/client/index.js',
-    // devtool: 'source-map',
-    // entry: path.resolve(__dirname, 'src') + '/src/client/index.js',
-    // entry: {
-    //     home: './src/client/js/app.js',
-    //     about: './src/client/js/about.js',
-    // },
     output: {
         filename: '[contenthash].js',
-        // path: path.resolve(__dirname, './dist','scripts'),
-        // publicPath: './dist/scripts/',
         path: path.resolve(__dirname,'dist'),
     },
     devtool: 'cheap-source-map',
@@ -57,7 +49,4 @@ module.exports = {
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
-    // devServer: {
-    //     contentBase: './'
-    // }
 };

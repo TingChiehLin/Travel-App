@@ -7,7 +7,7 @@ const weatherBitForecastURL = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabay_APIURL = "https://pixabay.com/api/?key=";
 
 //Calculate Date
-function calculateDay(dayID,monthID,yearID) {
+function calculate_Day(dayID,monthID,yearID) {
     const currentDate = new Date();
     const futureDate = new Date(yearID,monthID-1,dayID);
     const difDate = Math.ceil((futureDate - currentDate) / 1000 / 60 / 60 / 24);  
@@ -15,7 +15,7 @@ function calculateDay(dayID,monthID,yearID) {
 }
   
 //Get Location Request
-const geoLocationRequest = async (locationName) => {
+const geoLocation_Request = async (locationName) => {
     const url = geoNamesURL + locationName + '&maxRows=10' + '&username=' + geonames_Key;
     try {
         const res = await fetch(url);
@@ -32,7 +32,7 @@ const geoLocationRequest = async (locationName) => {
 } 
 
 //Get Forecast
-const ForecastRequest = async (latitude, longitude) => {
+const Forecast_Request = async (latitude, longitude) => {
 
     const url = weatherBitForecastURL + '&lat=' + latitude + '&lon=' + longitude + '&key=' + weatherBitForecast_KEY;
     try {
@@ -50,7 +50,7 @@ const ForecastRequest = async (latitude, longitude) => {
 
 //Get ImageURL
 
-const imageRequest = async (city, country) => {
+const image_Request = async (city, country) => {
 
     const city_image = `&q=${city}&image_type=photo`;
     const country_image = `&q=${country || 'Australia Flag'}&image_type=photo`;
@@ -81,8 +81,8 @@ const imageRequest = async (city, country) => {
 }
 
 export {
-    geoLocationRequest,
-    ForecastRequest,
-    imageRequest,
-    calculateDay
+    geoLocation_Request,
+    Forecast_Request,
+    image_Request,
+    calculate_Day
 }
