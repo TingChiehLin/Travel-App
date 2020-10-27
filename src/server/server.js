@@ -19,7 +19,7 @@ app.use(express.static('dist'));
 
 app.get('/',function (req, res) {
     //res.sendFile(path.resolve('src/client/views/index.html'));
-    res.send('./dist/index.html');
+    res.status(200).send('./dist/index.html');
 })
 
 app.get('/about',function (req, res) {
@@ -28,7 +28,7 @@ app.get('/about',function (req, res) {
 
 app.post('/result',(req,res) => {
     Object.assign(Data, req.body);
-    res.send(Data);
+    res.status(201).send(Data);
 })
 
 const port = 3002;
@@ -36,5 +36,4 @@ const server = app.listen(port, () => {
     console.log(`Server is running:${port}`);
 });
 
-module.exports = app;
-
+export {app};
