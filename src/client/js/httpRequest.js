@@ -13,10 +13,9 @@ const errorMessageDiv = document.getElementById('error');
 function calculate_Day(dayID,monthID,yearID) {
     const currentDate = new Date();
     const futureDate = new Date(yearID,monthID-1,dayID);
-    const difDate = Math.ceil((futureDate - currentDate) / 1000 / 60 / 60 / 24);  
-    return difDate;
+    return Math.ceil((futureDate - currentDate) / 1000 / 60 / 60 / 24);  ;
 }
-  
+
 //Get Location Request
 const geoLocation_Request = async (locationName) => {
     const url = geoNamesURL + locationName + '&maxRows=10' + '&username=' + geonames_Key;

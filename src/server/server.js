@@ -27,11 +27,7 @@ app.get('/about',function (req, res) {
 })
 
 app.post('/result',(req,res) => {
-    Data.temperature = req.body.temperature;
-    Data.condition = req.body.condition;
-    Data.duration = req.body.desDuration;
-    Data.cityImage  = req.body.cityImage;
-    Data.date = req.body.date;
+    Object.assign(Data, req.body);
     res.send(Data);
 })
 

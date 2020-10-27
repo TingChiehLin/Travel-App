@@ -1,4 +1,3 @@
-import { forEach } from 'lodash';
 import {geoLocation_Request, Forecast_Request, image_Request,calculate_Day} from './httpRequest';
 
 //Modal
@@ -39,7 +38,7 @@ const errorElement = document.getElementById('error');
 let closeButton = document.getElementById('modal-action-container');
 
 //Data
-const data = {};
+let data = {};
 let number = 0;
 //Trip-List Data
 const tripListData = [];
@@ -48,7 +47,7 @@ const tripListData = [];
 const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (placeID.value == '' || yearID.value == '' || monthID.value == '' || dayID.value == '') {
+    if (placeID.value === '' || yearID.value === '' || monthID.value === '' || dayID.value === '') {
         errorElement.innerText = "Error Message"
     }
 
@@ -60,18 +59,21 @@ const handleSubmit = async (e) => {
     const forecastdata = await Forecast_Request(location.latitude,location.longitude);
     const imageData = await image_Request(placeID.value);
     number++;
-    data.number = number;
-    data.title = placeID.value;
-    data.day = dayDuration;
-    data.years = yearID.value;
-    data.months = monthID.value;
-    data.days = dayID.value;
-    data.latitude = location.latitude;
-    data.longitude = location.latitude;
-    data.temperature = forecastdata.temperature;
-    data.condition = forecastdata.condition;
-    data.cityImage = imageData.cityImage;
-    data.countryImage = imageData.countryImage;
+
+    data = {
+        number,
+        title: placeID.value,
+        day: dayDuration,
+        years: yearID.value,
+        months: monthID.value,
+        days: dayID.value,
+        latitude: location.latitude,
+        longitude: location.latitude,
+        temperature: forecastdata.temperature,
+        condition: forecastdata.condition,
+        cityImage: imageData.cityImage,
+        countryImage: imageData.countryImage
+    }
     updateUI(data);
     updateList(data);
 }
@@ -87,22 +89,14 @@ const updateUI = (data) => {
 
 const updateList = (data) => {
     tripListData.push(data);
-    //Update UI
-    const newDiv = document.createElement('div');
-    const tripNumber = document.createElement('p');
-    tripNumber.innerHTML = data.number;
-    const tripTitle = document.createElement('p');
-    tripTitle.innerHTML = data.title;
-    const tripDayLeft = document.createElement('p');
-    tripDayLeft.innerHTML = data.day;
-    const tripTime = document.createElement('p');
-    tripTime.innerHTML = `${data.days} / ${data.months} / ${data.years}`;
-    newDiv.classList = 'trip-list-items';
-    newDiv.appendChild(tripNumber);
-    newDiv.appendChild(tripTitle);
-    newDiv.appendChild(tripDayLeft);
-    newDiv.appendChild(tripTime);
-    tripListPlan.appendChild(newDiv);
+    //Create list of items dynamically
+    tripListPlan.innerHTML += `
+    <div class="trip-list-items">
+        <p>${data.number}</p>
+        <p>${data.title}</p>
+        <p>${data.day}</p>
+        <p>${data.days} / ${data.months} / ${data.years}</p>
+    </div>`
 }
 
 //close modal
@@ -123,11 +117,14 @@ const seeYourTrip = () => {
     tripListContainer.style.display = 'block';
 }
 
-form.addEventListener('submit', handleSubmit);
-//submitButton.addEventListener("click",handleSubmit);
-closeButton.addEventListener('click',closeModal);
-tripPlan.addEventListener('click',planYourTrip);
-tripRecord.addEventListener('click',seeYourTrip);
+document.addEventListener("DOMContentLoaded", loading_Done);
+function loading_Done() {
+    form.addEventListener('submit', handleSubmit);
+    //submitButton.addEventListener("click",handleSubmit);
+    closeButton.addEventListener('click',closeModal);
+    tripPlan.addEventListener('click',planYourTrip);
+    tripRecord.addEventListener('click',seeYourTrip);
+}
 
 export {
     handleSubmit

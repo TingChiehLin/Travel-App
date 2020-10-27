@@ -1,0 +1,17 @@
+    /* from app.js
+    const newDiv = document.createElement('div');
+    const tripNumber = document.createElement('p');
+    tripNumber.innerHTML = data.number;
+    const tripTitle = document.createElement('p');
+    tripTitle.innerHTML = data.title;
+    const tripDayLeft = document.createElement('p');
+    tripDayLeft.innerHTML = data.day;
+    const tripTime = document.createElement('p');
+    tripTime.innerHTML = `${data.days} / ${data.months} / ${data.years}`;
+    newDiv.classList = 'trip-list-items';
+    newDiv.appendChild(tripNumber);
+    newDiv.appendChild(tripTitle);
+    newDiv.appendChild(tripDayLeft);
+    newDiv.appendChild(tripTime);
+    tripListPlan.appendChild(newDiv);
+    */
