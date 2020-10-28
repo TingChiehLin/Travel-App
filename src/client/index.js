@@ -1,4 +1,3 @@
-// import {app} from './js/app';
 import './js/app';
 import './js/favicons';
 
