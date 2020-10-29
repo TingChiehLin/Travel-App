@@ -1,8 +1,8 @@
-import * as app from '../src/server/server';
+// import * as app from '../src/server/server';
+import app from '../src/server/server';
 const request = require('supertest');
 
 describe("Testing server root", () => {
-
     test("Return App method is defined", (done) => {
         expect(app).toBeDefined();
         done();

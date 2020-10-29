@@ -1,4 +1,4 @@
-# Project Introduction - Travel App
+# Introduction - Travel App
 
 This is final Front-End Developer Capstone Project. A pretty city view and schedule plan app. 
 
