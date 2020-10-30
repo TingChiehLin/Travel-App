@@ -50,5 +50,13 @@ npm run test
 [Weatherbit](https://www.weatherbit.io/)
 [Pixabay](https://pixabay.com/api/docs/)
 
+## Result
+
+![Home]()
+
+![SearchResult]()
+
+![TravelList]()
+
 ## License
  This project is authorized MIT License
