@@ -31,8 +31,10 @@ describe('post /api/v1/pets', () => {
     });
 });
 
-afterAll(done => {
-    // Closing the DB connection allows Jest to exit successfully.
-    // app.connection.close()
-    done()
-})
+// afterEach(async () => {
+//     await app.close();
+// });
+
+// afterAll(async () => {
+// await new Promise(resolve => setTimeout(() => resolve(), 1000));
+// });
