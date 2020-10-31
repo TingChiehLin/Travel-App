@@ -1,7 +1,11 @@
-// import * as app from '../src/server/server';
 import app from '../src/server/server';
+
 const request = require('supertest');
 
+beforeAll(done => {
+    done()
+})
+  
 describe("Testing server root", () => {
     test("Return App method is defined", (done) => {
         expect(app).toBeDefined();
@@ -26,3 +30,9 @@ describe('post /api/v1/pets', () => {
             expect(res.statusCode).toEqual(201);
     });
 });
+
+afterAll(done => {
+    // Closing the DB connection allows Jest to exit successfully.
+    // app.connection.close()
+    done()
+})
