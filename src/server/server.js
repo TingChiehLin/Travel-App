@@ -36,4 +36,14 @@ const server = app.listen(port, () => {
     console.log(`Server is running:${port}`);
 });
 
+var handleServerClose = function() {
+    server.close();
+};
+
+handleServerClose();
+
 module.exports = app;
+
+export {
+    handleServerClose
+}

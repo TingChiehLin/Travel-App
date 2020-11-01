@@ -1,5 +1,5 @@
 import app from '../src/server/server';
-
+import {handleServerClose} from '../src/server/server';
 const request = require('supertest');
 
 beforeAll(done => {
@@ -27,7 +27,7 @@ describe('post /api/v1/pets', () => {
             .send({
                 title: 'Melbourne'
             })
-            expect(res.statusCode).toEqual(201);
+            expect(res.statusCode).toEqual(201);        
     });
 });
 
@@ -36,5 +36,6 @@ describe('post /api/v1/pets', () => {
 // });
 
 // afterAll(async () => {
-// await new Promise(resolve => setTimeout(() => resolve(), 1000));
+// // await new Promise(resolve => setTimeout(() => resolve(), 1000));
+// await handleServerClose();
 // });
