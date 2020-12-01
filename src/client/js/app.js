@@ -46,7 +46,6 @@ const tripListData = [];
 //Handle submit
 const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (placeID.value === '' || yearID.value === '' || monthID.value === '' || dayID.value === '') {
         errorElement.innerText = "Error Message"
     }
